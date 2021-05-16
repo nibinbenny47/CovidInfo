@@ -11,6 +11,10 @@
         <div id="addPincode">
             <asp:Label runat="server" ID="lblPincode" Text="Pincode"></asp:Label>
             <asp:TextBox runat="server" ID="txtPincode"></asp:TextBox>
+            <div id="btn">
+                <asp:Button ID="btnSave" runat="server"  Text="Save" OnClick="btnSave_Click1" />
+
+            </div>
         </div>
     </form>
 </body>
