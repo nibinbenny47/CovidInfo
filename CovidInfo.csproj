@@ -68,7 +68,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Pincode.aspx" />
-    <Content Include="Admin\pin.aspx" />
+    <Content Include="js\jquery-ui.css" />
+    <Content Include="js\jquery-ui.js" />
+    <Content Include="js\jquery-ui.min.css" />
+    <Content Include="js\jquery-ui.min.js" />
+    <Content Include="js\jquery-ui.structure.css" />
+    <Content Include="js\jquery-ui.structure.min.css" />
+    <Content Include="js\jquery-ui.theme.css" />
+    <Content Include="js\jquery-ui.theme.min.css" />
+    <Content Include="js\jQuery.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -85,13 +93,6 @@
     </Compile>
     <Compile Include="Admin\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\pin.aspx.cs">
-      <DependentUpon>pin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\pin.aspx.designer.cs">
-      <DependentUpon>pin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
