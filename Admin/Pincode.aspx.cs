@@ -54,7 +54,12 @@ namespace CovidInfo.Admin
             SqlDataAdapter adp = new SqlDataAdapter(selQry, con);
             DataTable dt = new DataTable();
             adp.Fill(dt);
-            if ((dt.Rows.Count == 0) && (status == 0))
+
+            if (dt.Rows.Count != 0){
+                Response.Write("<script>alert('Pincode already entered!!!!')</script>");
+            }
+
+           else  if (status == 0)
             {
 
 
