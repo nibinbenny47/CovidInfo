@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pincode.aspx.cs" Inherits="CovidInfo.Admin.Pincode" %>
-   <%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>--%> 
+
+<%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>--%>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -18,22 +19,12 @@
 
 
             <div id="addPincode">
-             <%--   <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
-                <asp:UpdatePanel runat="server" ID="usernameupdatepanel">
-                    <ContentTemplate>--%>
-                        <asp:Label runat="server" ID="lblPincode" Text="Pincode"></asp:Label>
-                        <asp:TextBox runat="server" ID="txtPincode" placeholder="enter pincode here" ></asp:TextBox>
-                        <small>Error Message</small>
-                        <asp:Label ID="lblmessage" runat="server"></asp:Label>
-                <%--    </ContentTemplate>
-                </asp:UpdatePanel>--%>
 
-
-
-                <%--<small id="message"></small>--%>
+                <asp:Label runat="server" ID="lblPincode" Text="Pincode"></asp:Label>
+                <asp:TextBox runat="server" ID="txtPincode" placeholder="enter pincode here"></asp:TextBox>
+                <small>Error Message</small>
                 <div id="btn">
                     <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click1" OnClientClick="javascript:return  validate()" />
-
                 </div>
             </div>
             <hr />
@@ -52,9 +43,14 @@
             </div>
         </div>
     </form>
-
-
     <script src="../js/jQuery.js"></script>
+        <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+   <script>
+       $(document).ready(function () {
+           $('#grdPincode').DataTable();
+       });
+   </script>
+
     <script type="text/javascript">
         function validate() {
             let pincode = document.getElementById('<%=txtPincode.ClientID %>');
@@ -63,27 +59,18 @@
                 onError(pincode, "pincode cannot be empty");
                 return false;
 
-
             }
 
-
-
-            else if (!isValidPincode(pincode.value.trim())) {
+           else if (!isValidPincode(pincode.value.trim())) {
                 onError(pincode, "pincode not valid");
                 return false;
 
             }
             else {
                 onSuccess(pincode);
-                //return true;
+                
             }
-
-
-            //else {
-            //    alert("val");
-            //}
-
-
+          
         }
         //------success message-------------------------------------
         function onSuccess(input) {

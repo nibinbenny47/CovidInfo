@@ -21,7 +21,20 @@ namespace CovidInfo.Admin
             //con.Open();
             if (!IsPostBack)
             {
-                fillPincode();
+                connection();
+                string selQry = "select * from tbl_pincode";
+                SqlDataAdapter adprop = new SqlDataAdapter(selQry, con);
+                DataTable dt = new DataTable();
+                adprop.Fill(dt);
+                if(dt.Rows.Count == 0)
+                {
+                    Response.Write("<script>alert('no data')</script>");
+                }
+                else
+                {
+                    fillPincode();
+
+                }
 
             }
         }
@@ -83,6 +96,8 @@ namespace CovidInfo.Admin
             grdPincode.DataSource = reader;
 
             grdPincode.DataBind();
+            grdPincode.UseAccessibleHeader = true;
+            grdPincode.HeaderRow.TableSection = TableRowSection.TableHeader;
 
         }
 
