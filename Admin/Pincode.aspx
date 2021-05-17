@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pincode.aspx.cs" Inherits="CovidInfo.Admin.Pincode" %>
-
+   <%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>--%> 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,22 +8,7 @@
     <link href=" //cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="CSS/Pincode.css" rel="stylesheet" />
 
-    <style>
-          .suc {
-            background-color: #5cb85c;
-            font-size: 12px;
-            color: #ffffff;
-            padding: 3px 6px 3px 6px;
-        }
 
-        .fail {
-            background-color: #ed4e2a;
-            font-size: 12px;
-            color: #ffffff;
-            padding: 3px 6px 3px 6px;
-        }
-
-    </style>
 
 </head>
 <body>
@@ -33,14 +18,22 @@
 
 
             <div id="addPincode">
-                <asp:Label runat="server" ID="lblPincode" Text="Pincode"></asp:Label>
-                <asp:TextBox runat="server" ID="txtPincode" placeholder="enter pincode here" ></asp:TextBox>
-                <small>Error Message</small>
-                <asp:Label ID="message" runat="server"></asp:Label>
-              <%--<small id="message"></small>--%>
+             <%--   <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
+                <asp:UpdatePanel runat="server" ID="usernameupdatepanel">
+                    <ContentTemplate>--%>
+                        <asp:Label runat="server" ID="lblPincode" Text="Pincode"></asp:Label>
+                        <asp:TextBox runat="server" ID="txtPincode" placeholder="enter pincode here" ></asp:TextBox>
+                        <small>Error Message</small>
+                        <asp:Label ID="lblmessage" runat="server"></asp:Label>
+                <%--    </ContentTemplate>
+                </asp:UpdatePanel>--%>
+
+
+
+                <%--<small id="message"></small>--%>
                 <div id="btn">
-                    <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click1" OnClientClick="javascript: return validate()"  />
-                    
+                    <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click1" OnClientClick="javascript:return  validate()" />
+
                 </div>
             </div>
             <hr />
@@ -72,6 +65,7 @@
 
 
             }
+
 
 
             else if (!isValidPincode(pincode.value.trim())) {
@@ -118,68 +112,12 @@
             );
         }
     </script>
-    <%--------check pincode availability------%>
-    <%--<script type="text/javascript">
-        function CheckAvailability() {
-            var pincode = $('<%=txtPincode.ClientID %>').val();
-            var message = $('<%=message.ClientID %>');
-            $.ajax({
-                type: "POST",
-                async: true,
-                url: 'Pincode.aspx/CheckPincode',
-                data: '{pincode:"' + pincode + '"}',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    if (response.d != "0") {
-                        //alert('Username has already been taken')
-                        message.html('Username has already been taken');
-                        message.removeClass("suc").addClass("fail");
-                        return false;
-                    }
-                    else {
-                        //alert('Available')
-                        message.html('Available');
-                        message.removeClass("fail").addClass("suc");
-                        return true;
-                    }
-                }
-
-            });
-        }--%>
 
 
-       <%-- function CheckAvailability() {
-            var pincode = $('<%=txtPincode.ClientID %>').val();
-            $.ajax({
-                type: "POST",
-                url: "Pincode.aspx/CheckPincode",
-                data: '{pincode:"' + pincode + '"}',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                   
-                
-                   var message = $('<%=message.ClientID %>');
-                    if (response.d) {
-                        //message.css("color", "green");
-                        message.html("Username is available");
-                    }
-                    else {
-                        
-                        //message.css("color", "red");
-                        message.html("Username is NOT available");
-                    }
-                }
 
-            });
-        }--%>
-        <%--function ClearMessage() {
-            $('<%=message.ClientID %>').html("");
-        };--%>
-    </script>
+
 </body>
 
 </html>
- 
+
 

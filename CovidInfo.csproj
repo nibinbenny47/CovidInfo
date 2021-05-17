@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\ajax.aspx" />
     <Content Include="Admin\CSS\Pincode.css" />
     <Content Include="Admin\Pincode.aspx" />
     <Content Include="js\jquery-ui.css" />
@@ -82,13 +81,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\ajax.aspx.cs">
-      <DependentUpon>ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ajax.aspx.designer.cs">
-      <DependentUpon>ajax.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Pincode.aspx.cs">
       <DependentUpon>Pincode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

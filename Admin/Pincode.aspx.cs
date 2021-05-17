@@ -5,8 +5,6 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
-using System.IO;
-
 using System.Web.Configuration;
 using System.Configuration;
 
@@ -18,7 +16,6 @@ namespace CovidInfo.Admin
         SqlConnection con;
         SqlCommand cmd;
         public static int id, status = 0;
-        //SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=db_CovidInfo;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
             //con.Open();
@@ -27,7 +24,6 @@ namespace CovidInfo.Admin
                 fillPincode();
 
             }
-
         }
         public void connection()
         {
@@ -35,14 +31,31 @@ namespace CovidInfo.Admin
             con.Open();
         }
 
-
-
         protected void btnSave_Click1(object sender, EventArgs e)
         {
 
             connection();
-            if (status == 1)
+
+            //--check username availablility-------------
+            string selQry = "select * from tbl_pincode where pincode_number = '" + txtPincode.Text + "'";
+            SqlDataAdapter adp = new SqlDataAdapter(selQry, con);
+            DataTable dt = new DataTable();
+            adp.Fill(dt);
+            if ((dt.Rows.Count == 0) && (status == 0))
             {
+
+
+                cmd = new SqlCommand("sp_Pincode", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@status", 1);
+                cmd.Parameters.AddWithValue("@pincode_number", txtPincode.Text);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            else
+            {
+
                 cmd = new SqlCommand("sp_Pincode", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@status", 3);
@@ -54,17 +67,7 @@ namespace CovidInfo.Admin
                 status = 0;
 
             }
-            else
-            {
-                cmd = new SqlCommand("sp_Pincode", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@status", 1);
-                cmd.Parameters.AddWithValue("@pincode_number", txtPincode.Text);
-
-                cmd.ExecuteNonQuery();
-
-
-            }
+           
             fillPincode();
 
         }
@@ -78,60 +81,12 @@ namespace CovidInfo.Admin
             SqlDataAdapter adp = new SqlDataAdapter(cmd);
             var reader = cmd.ExecuteReader();
             grdPincode.DataSource = reader;
-          
-                grdPincode.DataBind();
-              
-            }
 
+            grdPincode.DataBind();
 
+        }
 
-
-
-
-
-
-
-        //SqlDataAdapter adp = new SqlDataAdapter(cmd);
-        //var reader = cmd.ExecuteReader();
-        //grdPincode.DataSource = reader;
-        //grdPincode.DataBind();
-        //grdPincode.UseAccessibleHeader = true;
-        //grdPincode.HeaderRow.TableSection = TableRowSection.TableHeader;
-        //-----for jQuery datatable ------------
-
-
-
-        //-----check pincode availability-----------
-        public static int CheckPincode(string pincode)
-        {
-            string connectionString = WebConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-
-            SqlConnection con = new SqlConnection(connectionString);
-             con.Open();
-            //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-            //using (SqlConnection conn = new SqlConnection(constr))
-            //{
-
-            using (SqlCommand cmd = new SqlCommand("sp_Pincode", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@status", 6);
-                    cmd.Parameters.AddWithValue("@pincode_number", pincode);
-                    con.Open();
-                    return (int)cmd.ExecuteScalar();
-                   
-                }
-            }
-            
-        
-          
-        
-
-
-
-
-
-    protected void grdPincode_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void grdPincode_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             id = Convert.ToInt32(e.CommandArgument.ToString());
             connection();
@@ -163,6 +118,6 @@ namespace CovidInfo.Admin
                 }
             }
         }
-       
+
     }
 }
