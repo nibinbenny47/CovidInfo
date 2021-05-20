@@ -21,6 +21,7 @@ namespace CovidInfo.Admin
             if (!IsPostBack)
             {
                 fillPincode();
+                fillGridHealthCenter();
             }
         }
         public void connection()
@@ -48,6 +49,7 @@ namespace CovidInfo.Admin
             txtPassword.Text = "";
             txtHealthCenter.Text = "";
             ddlPincode.ClearSelection();
+            fillGridHealthCenter();
 
         }
 
@@ -71,6 +73,90 @@ namespace CovidInfo.Admin
 
 
         }
+
        
+
+        protected void grdHealthCenter_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label active = ((Label)e.Row.FindControl("lblActive"));
+                Label Inactive = ((Label)e.Row.FindControl("lblInActive"));
+                HiddenField hdn = ((HiddenField)e.Row.FindControl("hdnStatus"));
+                if(hdn.Value == "1")
+                {
+                    active.Visible = true;
+                    active.CssClass = "active";
+                }
+                else
+                {
+                    Inactive.Visible = true;
+                    Inactive.CssClass = "inactive";
+                }
+            }
+        }
+
+        protected void grdHealthCenter_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            id = Convert.ToInt32(e.CommandArgument.ToString());
+            connection();
+            if (e.CommandName == "del")
+            {
+
+                cmd = new SqlCommand("sp_delete", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@tablename", "tbl_healthcenter");
+                cmd.Parameters.AddWithValue("@condition", "healthcenter_id");
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.ExecuteNonQuery();
+                fillGridHealthCenter();
+
+            }
+            if (e.CommandName == "ed")
+            {
+                cmd = new SqlCommand("sp_edit", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@tablename", "tbl_healthcenter");
+                cmd.Parameters.AddWithValue("@field1", txtHealthCenter.Text);
+                cmd.Parameters.AddWithValue("@field2", txtPassword.Text);
+                cmd.Parameters.AddWithValue("@field3", ddlPincode.SelectedValue);
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                adp.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    txtPincode.Text = dt.Rows[0]["pincode_number"].ToString();
+                    status = 1;
+                }
+            }
+        }
+
+        //----fill jQuery datatable ---------
+        public void fillGridHealthCenter()
+        {
+            connection();
+            cmd = new SqlCommand("sp_innerjoin", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            
+            cmd.Parameters.AddWithValue("@fieldset", "*");
+            cmd.Parameters.AddWithValue("@table1", "tbl_healthcenter");
+            cmd.Parameters.AddWithValue("@table2", "tbl_pincode");
+            cmd.Parameters.AddWithValue("@table1Short", "h");
+            cmd.Parameters.AddWithValue("@table2Short", "p");
+            cmd.Parameters.AddWithValue("@equalCondition", "pincode_id");
+           
+
+
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            var reader = cmd.ExecuteReader();
+            grdHealthCenter.DataSource = reader;
+
+            grdHealthCenter.DataBind();
+            grdHealthCenter.UseAccessibleHeader = true;
+            grdHealthCenter.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+        }
+
     }
 }

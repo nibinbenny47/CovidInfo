@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HealthCenter\" />
+    <Folder Include="Images\" />
     <Folder Include="User\" />
   </ItemGroup>
   <PropertyGroup>
