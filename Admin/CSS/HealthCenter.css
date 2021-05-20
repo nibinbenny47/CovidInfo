@@ -1,0 +1,45 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fa86fc;
+    /* display: flex;
+    justify-content: center;*/
+    /*align-items: center;*/
+    min-height: 100vh;
+    margin: 0;
+}
+#form-control {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /*align-items:center;*/
+    position: relative;
+    padding-top: 100px;
+    left: 100px;
+    bottom: 30px;
+}
+#txtHealthCenter {
+    width: 300px;
+    padding: 5px;
+}
+
+
+    #form-control select {
+        width: 300px;
+        padding: 5px;
+    }
+#btnSave {
+    width: 300px;
+    padding: 5px;
+    background-color:seagreen;
+    color:antiquewhite;
+    font-size:15px;
+}
+#grd-control {
+    max-height: 10px;
+}
+/*#activestatus{
+    display:flex;
+}*/

@@ -6,6 +6,7 @@
 <head runat="server">
     <title></title>
     <link href=" //cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="CSS/HealthCenter.css" rel="stylesheet"/>
     <style>
         .active{
             color:green;
@@ -26,12 +27,17 @@
                 <asp:Label runat="server" Text="Pincode  "></asp:Label>
 
                 <asp:DropDownList runat="server" ID="ddlPincode"></asp:DropDownList>
-                <asp:Label runat="server" Text="Health Center "></asp:Label>
-                <asp:TextBox runat="server" ID="txtHealthCenter" ></asp:TextBox>
+               
+                    <asp:Label runat="server" Text="Health Center "></asp:Label>
+                
+                <asp:TextBox runat="server" ID="txtHealthCenter" placeholder="Enter name" ></asp:TextBox>
+                
+              
+                
                 <div id="activestatus">
                 <asp:Label runat="server" ID="lblstatus" Text="Active Status"></asp:Label>
-                <asp:RadioButtonList runat="server" ID="rdbStatus">
-                    <asp:ListItem Text="Active" Value="1">
+                <asp:RadioButtonList runat="server" ID="rdbStatus" RepeatDirection="Horizontal">
+                    <asp:ListItem Text="Active" Value="1" >
 
                     </asp:ListItem>
                     <asp:ListItem Text="Not Active" Value="2"></asp:ListItem>
@@ -44,6 +50,7 @@
                 <div id="btn">
                     <asp:Button runat="server" ID="btnSave" Text="Save"  OnClick="btnSave_Click" />
                 </div>
+            </div>
             </div>
             
             <hr />
