@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\CSS\Pincode.css" />
+    <Content Include="Admin\HealthCenter.aspx" />
     <Content Include="Admin\Pincode.aspx" />
     <Content Include="js\jquery-ui.css" />
     <Content Include="js\jquery-ui.js" />
@@ -81,6 +82,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\HealthCenter.aspx.cs">
+      <DependentUpon>HealthCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\HealthCenter.aspx.designer.cs">
+      <DependentUpon>HealthCenter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Pincode.aspx.cs">
       <DependentUpon>Pincode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -87,6 +87,7 @@ namespace CovidInfo.Admin
             }
            
             fillPincode();
+            txtPincode.Text = "";
 
         }
         public void fillPincode()
