@@ -33,26 +33,40 @@ namespace CovidInfo.Admin
         protected void btnSave_Click(object sender, EventArgs e)
         {
             connection();
-            cmd = new SqlCommand("sp_HealthCenter", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@status", 1);
-            cmd.Parameters.AddWithValue("@healthcenter_name", txtHealthCenter.Text);
-            cmd.Parameters.AddWithValue("@healthcenter_password", txtPassword.Text);
-            cmd.Parameters.AddWithValue("@healthcenter_availstatus", 1);
 
-            cmd.Parameters.AddWithValue("@pincode_id", ddlPincode.SelectedValue);
+            //-----update-----
+            if (status == 1)
+            {
 
+                cmd = new SqlCommand("sp_HealthCenter", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@status", 4);
+                cmd.Parameters.AddWithValue("@newhealthcenter_name", txtHealthCenter.Text);
+                cmd.Parameters.AddWithValue("@newpincode_id", ddlPincode.SelectedValue);
+                cmd.Parameters.AddWithValue("@newhealthcenter_availstatus", rdbStatus.SelectedValue);
+                cmd.Parameters.AddWithValue("@healthcenter_id", id);
+                cmd.ExecuteNonQuery();
+                status = 0;
 
+            }
+            //----insert------------
+            else
+            {
+                cmd = new SqlCommand("sp_HealthCenter", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@status", 1);
+                cmd.Parameters.AddWithValue("@healthcenter_name", txtHealthCenter.Text);
+                cmd.Parameters.AddWithValue("@healthcenter_availstatus", rdbStatus.SelectedValue);
+                cmd.Parameters.AddWithValue("@pincode_id", ddlPincode.SelectedValue);
+                cmd.ExecuteNonQuery();
 
-            cmd.ExecuteNonQuery();
-
-            txtPassword.Text = "";
+            }
+            //txtPassword.Text = "";
             txtHealthCenter.Text = "";
+            rdbStatus.ClearSelection();
             ddlPincode.ClearSelection();
             fillGridHealthCenter();
-
         }
-
         //---fill pincode dropdown----
         protected void fillPincode()
         {
@@ -69,13 +83,7 @@ namespace CovidInfo.Admin
             ddlPincode.DataValueField = "pincode_id";
             ddlPincode.DataBind();
             ddlPincode.Items.Insert(0, "--select--");
-
-
-
         }
-
-       
-
         protected void grdHealthCenter_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -83,7 +91,7 @@ namespace CovidInfo.Admin
                 Label active = ((Label)e.Row.FindControl("lblActive"));
                 Label Inactive = ((Label)e.Row.FindControl("lblInActive"));
                 HiddenField hdn = ((HiddenField)e.Row.FindControl("hdnStatus"));
-                if(hdn.Value == "1")
+                if (hdn.Value == "1")
                 {
                     active.Visible = true;
                     active.CssClass = "active";
@@ -114,19 +122,25 @@ namespace CovidInfo.Admin
             }
             if (e.CommandName == "ed")
             {
-                cmd = new SqlCommand("sp_edit", con);
+                cmd = new SqlCommand("sp_selectById", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@tablename", "tbl_healthcenter");
-                cmd.Parameters.AddWithValue("@field1", txtHealthCenter.Text);
-                cmd.Parameters.AddWithValue("@field2", txtPassword.Text);
-                cmd.Parameters.AddWithValue("@field3", ddlPincode.SelectedValue);
-
+                //cmd.Parameters.AddWithValue("@status", 2);
+                cmd.Parameters.AddWithValue("@table1", "tbl_healthcenter");
+                cmd.Parameters.AddWithValue("@table2", "tbl_pincode");
+                cmd.Parameters.AddWithValue("@table1short", "h");
+                cmd.Parameters.AddWithValue("@table2short", "p");
+                cmd.Parameters.AddWithValue("@fieldset", "*");
+                cmd.Parameters.AddWithValue("@field", "pincode_id");
+                cmd.Parameters.AddWithValue("@condition", "healthcenter_id");
+                cmd.Parameters.AddWithValue("@Id", id);
                 DataTable dt = new DataTable();
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);
                 if (dt.Rows.Count > 0)
                 {
-                    txtPincode.Text = dt.Rows[0]["pincode_number"].ToString();
+                    txtHealthCenter.Text = dt.Rows[0]["healthcenter_name"].ToString();
+                    ddlPincode.SelectedValue = dt.Rows[0]["pincode_id"].ToString();
+                    rdbStatus.SelectedValue = dt.Rows[0]["healthcenter_availstatus"].ToString();
                     status = 1;
                 }
             }
@@ -138,20 +152,15 @@ namespace CovidInfo.Admin
             connection();
             cmd = new SqlCommand("sp_innerjoin", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            
             cmd.Parameters.AddWithValue("@fieldset", "*");
             cmd.Parameters.AddWithValue("@table1", "tbl_healthcenter");
             cmd.Parameters.AddWithValue("@table2", "tbl_pincode");
             cmd.Parameters.AddWithValue("@table1Short", "h");
             cmd.Parameters.AddWithValue("@table2Short", "p");
             cmd.Parameters.AddWithValue("@equalCondition", "pincode_id");
-           
-
-
             SqlDataAdapter adp = new SqlDataAdapter(cmd);
             var reader = cmd.ExecuteReader();
             grdHealthCenter.DataSource = reader;
-
             grdHealthCenter.DataBind();
             grdHealthCenter.UseAccessibleHeader = true;
             grdHealthCenter.HeaderRow.TableSection = TableRowSection.TableHeader;

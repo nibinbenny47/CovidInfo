@@ -28,9 +28,18 @@
                 <asp:DropDownList runat="server" ID="ddlPincode"></asp:DropDownList>
                 <asp:Label runat="server" Text="Health Center "></asp:Label>
                 <asp:TextBox runat="server" ID="txtHealthCenter" ></asp:TextBox>
-                <asp:Label runat="server" Text="Give Password "></asp:Label>
+                <div id="activestatus">
+                <asp:Label runat="server" ID="lblstatus" Text="Active Status"></asp:Label>
+                <asp:RadioButtonList runat="server" ID="rdbStatus">
+                    <asp:ListItem Text="Active" Value="1">
 
-                <asp:TextBox runat="server" ID="txtPassword"  TextMode="Password"></asp:TextBox>
+                    </asp:ListItem>
+                    <asp:ListItem Text="Not Active" Value="2"></asp:ListItem>
+                </asp:RadioButtonList>
+                    </div>
+               <%-- <asp:Label runat="server" Text="Give Password "></asp:Label>
+
+                <asp:TextBox runat="server" ID="txtPassword"  TextMode="Password"></asp:TextBox>--%>
 
                 <div id="btn">
                     <asp:Button runat="server" ID="btnSave" Text="Save"  OnClick="btnSave_Click" />
