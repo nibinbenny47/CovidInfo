@@ -93,17 +93,17 @@ namespace CovidInfo.Admin
                 HiddenField hdn = ((HiddenField)e.Row.FindControl("hdnStatus"));
                 if (hdn.Value == "1")
                 {
-                    active.Visible = true;
+                    active.Visible = true;  
                     active.CssClass = "active";
                 }
                 else
                 {
                     Inactive.Visible = true;
                     Inactive.CssClass = "inactive";
-                }
-            }
+                } 
+            } 
         }
-
+        
         protected void grdHealthCenter_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             id = Convert.ToInt32(e.CommandArgument.ToString());
