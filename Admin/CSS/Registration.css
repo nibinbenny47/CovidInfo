@@ -1,0 +1,293 @@
+﻿
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f5f4f2;
+    /* display: flex;
+    justify-content: center;*/
+    /*align-items: center;*/
+    min-height: 100vh;
+    margin: 0;
+}
+
+nav {
+    width: 100%;
+    height: 70px;
+    background-color: #001f60;
+    padding: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 30%;
+    display: flex;
+}
+
+nav img {
+    width: 20px;
+    margin-left: 15%;
+    margin-right: 10px;
+    /*mix-blend-mode: multiply;*/
+}
+
+nav p {
+    color: white;
+}
+
+nav a {
+    margin-right: 50px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    padding: 10px;
+    padding-right: 100px;
+}
+
+#VaccineDose {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-around;
+}
+/*#Dose-1{
+    width:500px;
+}
+#Dose-2 {
+    width: 500px;
+}*/
+#btnDose {
+    background-color: #cc9706;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#btnDose2 {
+    background-color: #cc9706;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#dose1-content {
+    margin-top: 30px;
+    width: 300px;
+}
+
+#dose-2content {
+    margin-top: 30px;
+    width: 300px;
+}
+/*adhar section*/
+#Aadhar {
+    padding: 7px;
+    color: #001f60;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    position: relative;
+}
+
+    #Aadhar label {
+        color: #27557d;
+        font-size: 18px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        position: absolute;
+        top: 10px;
+        transition: 0.5s ease-in-out;
+    }
+
+    #Aadhar input[type=text] {
+        border: none;
+        padding: 7px;
+        margin-top: 5px;
+        border-bottom: 2px solid black;
+        background: inherit;
+        outline: none;
+        color: #27557d;
+        width: 100%;
+        /*width: 100%;
+        padding: 4px;*/
+    }
+
+        #Aadhar input[type=text]:focus ~ label,
+        #Aadhar input[type=text]:valid ~ label {
+            color: #27557d;
+            top: -10px;
+            font-size: 12px;
+        }
+
+        #Aadhar input[type=text]:focus,
+        #Aadhar input[type=text]:valid{
+            outline: none;
+        }
+
+#Aadhar2 {
+    padding: 7px;
+    color: #001f60;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    position: relative;
+}
+
+    #Aadhar2 label {
+        color: #27557d;
+        font-size: 18px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        position: absolute;
+        top: 10px;
+        transition: 0.5s ease-in-out;
+    }
+
+    #Aadhar2 input[type=text] {
+        border: none;
+        padding: 7px;
+        margin-top: 5px;
+        border-bottom: 2px solid black;
+        background: inherit;
+        outline: none;
+        color: #27557d;
+        width: 100%;
+    }
+
+        #Aadhar2 input[type=text]:focus ~ label,
+        #Aadhar2 input[type=text]:valid ~ label {
+            color: #27557d;
+            top: -10px;
+            font-size: 12px;
+        }
+
+        #Aadhar2 input[type=text]:focus,
+        #Aadhar2 input[type=text]:valid{
+            outline: none;
+        }
+
+#btnCheckAadhar {
+    background-color: #001f60;
+    color: white;
+    width: 100px;
+    padding: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 19px;
+    margin-top: 4px;
+}
+
+    #btnCheckAadhar:hover {
+        background-color: #b8b3c4;
+    }
+
+#btnCheckAdhar2 {
+    background-color: #001f60;
+    color: white;
+    width: 100px;
+    padding: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 19px;
+    margin-top: 4px;
+}
+
+    #btnCheckAdhar2:hover {
+        background-color: #b8b3c4;
+    }
+    /*-----------------dose1inputgroup*/
+#check-success {
+    padding: 7px;
+    color: #27557d;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    
+}
+.form-control {
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-control label {
+    color: #27557d;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: absolute;
+    top: 10px;
+    transition: 0.5s ease-in-out;
+}
+
+.form-control input[type=text] {
+    border: none;
+    padding: 7px;
+    margin-top: 5px;
+    border-bottom: 2px solid black;
+    background: inherit;
+    outline: none;
+    color: #27557d;
+    width: 100%;
+}
+
+    .form-control input[type=text]:focus ~ label,
+    .form-control input[type=text]:valid ~ label{
+        color: #27557d;
+        top: -10px;
+        font-size:12px;
+    }
+
+    .form-control input[type=text]:focus,
+    .form-control input[type=text]:valid{
+        outline: none;
+    }
+    /*-------------for gender*/
+.form-controlGender label {
+    color: #27557d;
+    top: -5px;
+}
+.form-control select {
+    border:none;
+    padding: 7px;
+    margin-top: 5px;
+    border-bottom: 2px solid black;
+    background: inherit;
+    outline: none;
+    color: #27557d;
+    width: 100%;
+}
+#btnRegister {
+    background-color: #001f60;
+    color: white;
+    width: 100px;
+    padding: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 19px;
+    margin-top: 4px;
+}
+    #btnRegister:hover {
+        background-color: #b8b3c4;
+    }
+
+
+
+
+
+

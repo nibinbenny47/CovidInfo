@@ -48,7 +48,7 @@ namespace CovidInfo.User
             ddlPincode.DataTextField = "pincode_number";
             ddlPincode.DataValueField = "pincode_id";
             ddlPincode.DataBind();
-            ddlPincode.Items.Insert(0, "--select--");
+            ddlPincode.Items.Insert(0, "-------Select  Pincode--------");
         }
 
        
@@ -149,7 +149,7 @@ namespace CovidInfo.User
             ddlHealthCenter.DataTextField = "healthcenter_name";
             ddlHealthCenter.DataValueField = "healthcenter_id";
             ddlHealthCenter.DataBind();
-            ddlHealthCenter.Items.Insert(0, "--select--");
+            ddlHealthCenter.Items.Insert(0, "------Select Health Center-----");
         }
     }
 }

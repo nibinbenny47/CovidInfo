@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Admin\CSS\HealthCenter.css" />
     <Content Include="Admin\CSS\Pincode.css" />
+    <Content Include="Admin\CSS\Registration.css" />
     <Content Include="Admin\HealthCenter.aspx" />
     <Content Include="Admin\Pincode.aspx" />
     <Content Include="js\jquery-ui.css" />
