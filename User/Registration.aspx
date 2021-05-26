@@ -92,6 +92,7 @@
                     </div>
 
                 </section>
+               
 
                 <section id="Dose-2">
                     <%-- <h1>Dose-2</h1>--%>
@@ -146,10 +147,24 @@
                 </section>
             </div>
         </div>
+         <%-------------success message-----------%>
+                <div id="success-popup">
+                    <div id="popup-content">
+                        <img src="../Images/close.jpg"  class="closebtn" id="closebtn"/>
+                        <img src="../Images/active.png"  class="activeIcon"/>
+                        <div id="text-content">
+                            <label >
+                                You are succesfully registered for Dose 1
+                            </label>
+                        </div>
+                       
+                    </div>
+                </div>
     </form>
 
     <script src="../js/jQuery.js"></script>
     <script src="../js/jquery-ui.js"></script>
+<%--    <script src="../Admin/JS/Registration.js"></script>--%>
 
     <script type="text/javascript">
         $("#txtDOB").datepicker({
@@ -172,8 +187,14 @@
             minDate: new Date(), //give min date as today
             maxDate: new Date(2025, 0, 5) //give max date as you wish
         });
-
+        
 
     </script>
+<%--    <script>
+        document.getElementById('<%=btnDose.ClientID %>').addEventListener("click", () => {
+            document.querySelector('#Aadhar').style.display = "block";
+        })
+    </script>--%>
+  
 </body>
 </html>

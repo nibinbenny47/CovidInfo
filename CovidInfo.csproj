@@ -71,7 +71,9 @@
     <Content Include="Admin\CSS\Pincode.css" />
     <Content Include="Admin\CSS\Registration.css" />
     <Content Include="Admin\HealthCenter.aspx" />
+    <Content Include="Admin\JS\Registration.js" />
     <Content Include="Admin\Pincode.aspx" />
+    <Content Include="Images\close.jpg" />
     <Content Include="js\jquery-ui.css" />
     <Content Include="js\jquery-ui.js" />
     <Content Include="js\jquery-ui.min.css" />
@@ -127,7 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HealthCenter\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
