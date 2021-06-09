@@ -1,0 +1,12 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f5f4f2;
+    /* display: flex;
+    justify-content: center;*/
+    /*align-items: center;*/
+    min-height: 100vh;
+    margin: 0;
+}

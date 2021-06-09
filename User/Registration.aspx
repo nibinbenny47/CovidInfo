@@ -26,24 +26,22 @@
             </nav>
             <div id="VaccineDose">
                 <section id="Dose-1">
-                    <%-- <h1>Dose-1</h1>--%>
                     <asp:Button runat="server" ID="btnDose" Text="Dose-1" />
                     <div id="dose1-content">
                         <div id="Aadhar">
-                            <%--<asp:Label runat="server" ID="lblAdhaar" Text="Aadhar Number"></asp:Label>--%>
-                            <asp:TextBox runat="server" ID="txtAdhaar" required=""> </asp:TextBox><br />
-                            <%--<input type="text" id="txtAdhaar" required="" />--%>
+                            <asp:TextBox runat="server"  ID="txtAdhaar"  required="" onkeyup="ClearMessage()" > </asp:TextBox><br />
+                          
+                          
                             
 
                             <label for="txtAdhaar">Aadhar Number</label>
-                            <small class="error">error</small><br />
-                            <asp:Button runat="server" ID="btnCheckAadhar" Text="Check" OnClick="btnCheckAadhar_Click" />
+                            <small class="error" id="smallCheckAdhaar" >*please fill</small><br />
+                            <asp:Button runat="server" ID="btnCheckAadhar" Text="Check" OnClientClick="javascript:return validateAadhar()"     />
                         </div>
 
                         <div id="check-success">
 
                             <div class="form-control">
-                                <%--<asp:Label runat="server" ID="lblName" Text="Name"></asp:Label>--%>
                                 <asp:TextBox runat="server" ID="txtName" required=""></asp:TextBox>
                                 <label for="txtName">Name</label>
                                 <small class="error">error</small>
@@ -57,13 +55,11 @@
                                 </asp:RadioButtonList>
                             </div>
                             <div class="form-control">
-                                <%--<asp:Label runat="server" ID="lblDOB" Text="DOB"></asp:Label>--%>
                                 <asp:TextBox runat="server" ID="txtDOB" required=""></asp:TextBox>
                                 <label for="txtDOB">Date Of Birth</label>
                                 <small class="error">error</small>
                             </div>
                             <div class="form-control">
-                                <%--<asp:Label runat="server" ID="lblEmail" Text="Email"></asp:Label>--%>
                                 <asp:TextBox runat="server" ID="txtEmail" required=""></asp:TextBox>
                                 <label for="txtEmail">Email</label>
                                 <small class="error">error</small>
@@ -80,7 +76,6 @@
                                  <small class="error">error</small>
                             </div>
                             <div class="form-control">
-                                <%--<asp:Label runat="server" ID="lblDate" Text="Date"></asp:Label>--%>
                                 <asp:TextBox runat="server" ID="txtvaccineDate"  required=""></asp:TextBox>
                                <label for="txtvaccineDate">Date Of Vaccination</label>
                                 <small class="error">error</small>
@@ -164,7 +159,7 @@
 
     <script src="../js/jQuery.js"></script>
     <script src="../js/jquery-ui.js"></script>
-<%--    <script src="../Admin/JS/Registration.js"></script>--%>
+    <script src="../Admin/JS/Registration.js"></script>
 
     <script type="text/javascript">
         $("#txtDOB").datepicker({
@@ -187,14 +182,25 @@
             minDate: new Date(), //give min date as today
             maxDate: new Date(2025, 0, 5) //give max date as you wish
         });
+       
+       
         
 
     </script>
-<%--    <script>
-        document.getElementById('<%=btnDose.ClientID %>').addEventListener("click", () => {
-            document.querySelector('#Aadhar').style.display = "block";
-        })
-    </script>--%>
+    <script type="text/javascript">
+        function validateAadhar() {
+            var aadhar = document.getElementById('<%=txtAdhaar.ClientID %>');
+            
+            if (aadhar.value.length === 3) {
+                alert("max length 12")
+                return false;
+            }
+            else {
+                alert("success aadhar");
+            }
+
+    </script>
+    
   
 </body>
 </html>

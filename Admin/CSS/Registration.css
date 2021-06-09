@@ -49,11 +49,11 @@ nav a {
     padding: 10px;
     padding-right: 100px;
 }
-small{
+/*small{
     color:red;
     visibility:hidden;
 }
-
+*/
 #VaccineDose {
     margin-top: 70px;
     display: flex;
@@ -219,7 +219,7 @@ small{
     color: #27557d;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 18px;
-   /* display:none;*/
+    display:none;
     
 }
 .form-control {

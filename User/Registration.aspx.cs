@@ -133,6 +133,29 @@ namespace CovidInfo.User
             }
           
         }
+        //----dose 1---------
+        //protected void btnCheckAadhar_Click(object sender, EventArgs e)
+        //{
+        //    connection();
+        //    string selQry = "select * from tbl_user where user_aadhar ='" + txtAdhaar.Text + "'";
+        //    SqlDataAdapter adp = new SqlDataAdapter(selQry, con);
+
+        //    DataTable dt = new DataTable();
+        //    adp.Fill(dt);
+        //    if (dt.Rows.Count != 0)
+        //    {
+
+        //        Response.Write("<script>alert('Pincode already entered!!!!')</script>");
+
+
+        //    }
+        //    else
+        //    {
+        //        Response.Write("<script>alert('Pincode available!!!!')</script>");
+
+
+        //    }
+        //}
 
         protected void ddlPincode_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -155,24 +178,24 @@ namespace CovidInfo.User
 
         //---check aadhar ----------
 
-        [System.Web.Services.WebMethod]
-        public static bool CheckAadhar(string aadhar)
-        {
-            bool status = false;
-            string connectionString = WebConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+        //[System.Web.Services.WebMethod]
+        //public static bool CheckAadhar(string aadhar)
+        //{
+        //    bool status = false;
+        //    string connectionString = WebConfigurationManager.ConnectionStrings["constr"].ConnectionString;
 
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("CheckAadharAvailability", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Aadhar", aadhar.Trim());
-                    con.Open();
-                    status = Convert.ToBoolean(cmd.ExecuteScalar());
-                    con.Close();
-                }
-            }
-            return status;
-        }
+        //    using (SqlConnection con = new SqlConnection(connectionString))
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand("CheckAadharAvailability", con))
+        //        {
+        //            cmd.CommandType = CommandType.StoredProcedure;
+        //            cmd.Parameters.AddWithValue("@Aadhar", aadhar.Trim());
+        //            con.Open();
+        //            status = Convert.ToBoolean(cmd.ExecuteScalar());
+        //            con.Close();
+        //        }
+        //    }
+        //    return status;
+        //}
     }
 }
